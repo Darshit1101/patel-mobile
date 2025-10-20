@@ -136,11 +136,11 @@ const ComboForm = ({ combo, onSubmit, onCancel, isEditing = false }) => {
                                 name="comboName"
                                 value={formData.comboName}
                                 onChange={handleComboNameChange}
-                                className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-100 placeholder-black text-black ${errors.comboName
+                                className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-100 placeholder-grey text-black ${errors.comboName
                                     ? 'border-red-400 bg-red-50 focus:border-red-500'
                                     : 'border-gray-200 bg-gray-50 focus:border-blue-500 focus:bg-white hover:border-gray-300'
                                     }`}
-                                placeholder="Enter a descriptive name for your mobile combo (e.g., Gaming Bundle, Business Package, Family Set)"
+                                placeholder="Enter the combo name"
                             />
                             {formData.comboName && (
                                 <div className="absolute right-3 top-3 text-green-500">
@@ -176,11 +176,11 @@ const ComboForm = ({ combo, onSubmit, onCancel, isEditing = false }) => {
                                                 type="text"
                                                 value={mobileName}
                                                 onChange={(e) => handleMobileNameChange(index, e.target.value)}
-                                                className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-green-100 placeholder-black text-black ${errors.mobileNames
+                                                className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-green-100 placeholder-grey text-black ${errors.mobileNames
                                                     ? 'border-red-400 bg-red-50 focus:border-red-500'
                                                     : 'border-gray-200 bg-gray-50 focus:border-green-500 focus:bg-white hover:border-gray-300'
                                                     }`}
-                                                placeholder={`Enter mobile device ${index + 1} (e.g., iPhone 15 Pro Max, Samsung Galaxy S24 Ultra, Google Pixel 8)`}
+                                                placeholder={`Enter mobile device (e.g., iPhone 15 Pro Max, Samsung Galaxy S24 Ultra)`}
                                             />
                                             <div className="absolute left-12 top-3 w-px h-4 bg-gray-300"></div>
                                             {mobileName.trim() && (
