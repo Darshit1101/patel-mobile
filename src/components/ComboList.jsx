@@ -1,3 +1,5 @@
+import { Edit3, Trash2 } from 'lucide-react';
+
 const ComboList = ({ combos, onEdit, onDelete, loading }) => {
     if (loading) {
         return (
@@ -90,19 +92,25 @@ const ComboList = ({ combos, onEdit, onDelete, loading }) => {
                                         })}
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-3">
-                                    <button
-                                        onClick={() => onEdit(combo)}
-                                        className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-1 rounded-lg transition-all duration-200"
-                                    >
-                                        ✏️ Edit
-                                    </button>
-                                    <button
-                                        onClick={() => onDelete(combo._id)}
-                                        className="inline-flex items-center gap-1 text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded-lg transition-all duration-200"
-                                    >
-                                        🗑️ Delete
-                                    </button>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() => onEdit(combo)}
+                                            className="group inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                            title="Edit this combo"
+                                        >
+                                            <Edit3 size={16} className="group-hover:rotate-12 transition-transform duration-200" />
+                                            <span className="font-medium text-sm">Edit</span>
+                                        </button>
+                                        <button
+                                            onClick={() => onDelete(combo._id)}
+                                            className="group inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                                            title="Delete this combo"
+                                        >
+                                            <Trash2 size={16} className="group-hover:scale-110 transition-transform duration-200" />
+                                            <span className="font-medium text-sm">Delete</span>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
