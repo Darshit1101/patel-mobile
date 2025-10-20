@@ -94,9 +94,9 @@ const ComboForm = ({ combo, onSubmit, onCancel, isEditing = false }) => {
             };
 
             await onSubmit(cleanedData);
-            if (!isEditing) {
-                setFormData({ comboName: '', mobileNames: [''] });
-            }
+            // Clear form state to default after successful submission (both create and update)
+            setFormData({ comboName: '', mobileNames: [''] });
+            setErrors({}); // Also clear any existing errors
         } catch (error) {
             console.error('Error submitting form:', error);
         } finally {

@@ -1,4 +1,4 @@
-import { Edit3, Trash2 } from 'lucide-react';
+import { Edit3, Trash2, Smartphone, Calendar, Settings, List, Plus } from 'lucide-react';
 
 const ComboList = ({ combos, onEdit, onDelete, loading }) => {
     if (loading) {
@@ -18,7 +18,7 @@ const ComboList = ({ combos, onEdit, onDelete, loading }) => {
             <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
                 <div className="text-center">
                     <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span className="text-2xl">📱</span>
+                        <Smartphone className="w-8 h-8 text-gray-400" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">No Mobile Combos Yet</h3>
                     <p className="text-gray-500 mb-4">Start building your mobile device collection by creating your first combo above.</p>
@@ -32,7 +32,7 @@ const ComboList = ({ combos, onEdit, onDelete, loading }) => {
         <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
                 <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <Smartphone className="w-5 h-5 text-blue-500" />
                     Your Mobile Combos
                     <span className="ml-auto text-sm font-normal bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
                         {combos.length} {combos.length === 1 ? 'combo' : 'combos'}
@@ -45,16 +45,28 @@ const ComboList = ({ combos, onEdit, onDelete, loading }) => {
                     <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                         <tr>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                📱 Combo Name
+                                <div className="flex items-center gap-2">
+                                    <Smartphone className="w-4 h-4" />
+                                    Combo Name
+                                </div>
                             </th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                📋 Mobile Devices
+                                <div className="flex items-center gap-2">
+                                    <List className="w-4 h-4" />
+                                    Mobile Devices
+                                </div>
                             </th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                📅 Created Date
+                                <div className="flex items-center gap-2">
+                                    <Calendar className="w-4 h-4" />
+                                    Created Date
+                                </div>
                             </th>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                ⚙️ Actions
+                                <div className="flex items-center gap-2">
+                                    <Settings className="w-4 h-4" />
+                                    Actions
+                                </div>
                             </th>
                         </tr>
                     </thead>
