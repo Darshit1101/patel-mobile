@@ -96,8 +96,6 @@ patel-mobile/
    Create a `.env.local` file in the root directory:
    ```bash
    MONGODB_URI=mongodb://localhost:27017/patel-mobile
-   NEXTAUTH_SECRET=your-secret-key
-   NEXTAUTH_URL=http://localhost:3000
    ```
 
    **For MongoDB Atlas (cloud):**
@@ -230,7 +228,6 @@ patel-mobile/
 ### Other Platforms
 
 - Ensure `MONGODB_URI` is set in production environment
-- Update `NEXTAUTH_URL` to production domain
 - Run `npm run build` and `npm run start`
 
 ## Contributing
