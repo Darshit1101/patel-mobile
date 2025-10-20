@@ -1,0 +1,116 @@
+const ComboList = ({ combos, onEdit, onDelete, loading }) => {
+    if (loading) {
+        return (
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p className="text-gray-600 font-medium">Loading your mobile combos...</p>
+                    <p className="text-gray-400 text-sm mt-1">Please wait while we fetch your data</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!combos || combos.length === 0) {
+        return (
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                <div className="text-center">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl">📱</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">No Mobile Combos Yet</h3>
+                    <p className="text-gray-500 mb-4">Start building your mobile device collection by creating your first combo above.</p>
+                    <p className="text-gray-400 text-sm">Organize your devices into meaningful groups for better management</p>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    Your Mobile Combos
+                    <span className="ml-auto text-sm font-normal bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                        {combos.length} {combos.length === 1 ? 'combo' : 'combos'}
+                    </span>
+                </h3>
+            </div>
+
+            <div className="overflow-x-auto">
+                <table className="w-full">
+                    <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+                        <tr>
+                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                📱 Combo Name
+                            </th>
+                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                📋 Mobile Devices
+                            </th>
+                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                📅 Created Date
+                            </th>
+                            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                ⚙️ Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {combos.map((combo) => (
+                            <tr key={combo._id} className="hover:bg-gray-50">
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm font-medium text-gray-900">
+                                        {combo.comboName}
+                                    </div>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <div className="text-sm text-gray-900">
+                                        {combo.mobileNames && combo.mobileNames.length > 0 ? (
+                                            <div className="space-y-1">
+                                                {combo.mobileNames.map((mobileName, index) => (
+                                                    <div key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs inline-block mr-1 mb-1">
+                                                        {mobileName}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <span className="text-gray-400 italic bg-gray-50 px-3 py-1 rounded-lg text-xs">
+                                                No devices added yet
+                                            </span>
+                                        )}
+                                    </div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500 bg-gray-50 px-2 py-1 rounded-lg inline-block">
+                                        {new Date(combo.createdAt).toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: 'numeric'
+                                        })}
+                                    </div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-3">
+                                    <button
+                                        onClick={() => onEdit(combo)}
+                                        className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-3 py-1 rounded-lg transition-all duration-200"
+                                    >
+                                        ✏️ Edit
+                                    </button>
+                                    <button
+                                        onClick={() => onDelete(combo._id)}
+                                        className="inline-flex items-center gap-1 text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded-lg transition-all duration-200"
+                                    >
+                                        🗑️ Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+export default ComboList;
