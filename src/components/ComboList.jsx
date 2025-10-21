@@ -1,4 +1,4 @@
-import { Edit3, Trash2, Smartphone, Calendar, Settings, List, Plus } from 'lucide-react';
+import { Edit2, Trash2, Smartphone, Calendar, Settings, List, Plus } from 'lucide-react';
 
 const ComboList = ({ combos, onEdit, onDelete, loading }) => {
     if (loading) {
@@ -111,7 +111,7 @@ const ComboList = ({ combos, onEdit, onDelete, loading }) => {
                                             className="group inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                             title="Edit this combo"
                                         >
-                                            <Edit3 size={16} className="group-hover:rotate-12 transition-transform duration-200" />
+                                            <Edit2 size={16} className="group-hover:rotate-12 transition-transform duration-200" />
                                             <span className="font-medium text-sm">Edit</span>
                                         </button>
                                         <button
