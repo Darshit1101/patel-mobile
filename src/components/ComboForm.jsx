@@ -209,9 +209,9 @@ const ComboForm = ({ combo, onSubmit, onCancel, isEditing = false }) => {
                         <button
                             type="button"
                             onClick={addMobileField}
-                            className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl hover:from-green-600 hover:to-emerald-600 focus:outline-none focus:ring-4 focus:ring-green-100 transition-all duration-200 flex items-center justify-center gap-2 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            className="cursor-pointer w-full sm:w-auto px-4 py-2.5 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 transition-all duration-150 flex items-center justify-center gap-2 font-medium text-sm shadow-md hover:shadow-lg active:scale-95"
                         >
-                            <Plus size={20} />
+                            <Plus size={16} />
                             Add Another Mobile
                         </button>
 
@@ -228,16 +228,16 @@ const ComboForm = ({ combo, onSubmit, onCancel, isEditing = false }) => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="cursor-pointer flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-3 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
+                            className="cursor-pointer flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-150 flex items-center justify-center gap-2 font-medium text-sm shadow-md hover:shadow-lg active:scale-95"
                         >
                             {loading ? (
                                 <>
-                                    <Loader2 size={20} className="animate-spin" />
+                                    <Loader2 size={16} className="animate-spin" />
                                     Saving...
                                 </>
                             ) : (
                                 <>
-                                    {isEditing ? <Save size={20} /> : <Sparkles size={20} />}
+                                    {isEditing ? <Save size={16} /> : <Sparkles size={16} />}
                                     {isEditing ? 'Update Combo' : 'Create Combo'}
                                 </>
                             )}
@@ -252,9 +252,9 @@ const ComboForm = ({ combo, onSubmit, onCancel, isEditing = false }) => {
                                     setErrors({});
                                     onCancel();
                                 }}
-                                className="flex-1 sm:flex-none px-6 py-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 transition-all duration-200 flex items-center justify-center gap-2 font-medium border border-gray-200 hover:border-gray-300"
+                                className="flex-1 sm:flex-none px-4 py-2.5 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-150 flex items-center justify-center gap-2 font-medium text-sm border border-gray-200 hover:border-gray-300 active:scale-95"
                             >
-                                <ArrowLeft size={18} />
+                                <ArrowLeft size={16} />
                                 Cancel
                             </button>
                         )}
