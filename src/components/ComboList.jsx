@@ -42,7 +42,7 @@ const ComboList = ({ combos, onEdit, onDelete, loading }) => {
 
             <div className="overflow-x-auto">
                 <table className="w-full">
-                    <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+                    <thead className="bg-gray-200">
                         <tr>
                             <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                 <div className="flex items-center gap-2">
