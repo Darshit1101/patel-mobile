@@ -246,7 +246,12 @@ const ComboForm = ({ combo, onSubmit, onCancel, isEditing = false }) => {
                         {isEditing && (
                             <button
                                 type="button"
-                                onClick={onCancel}
+                                onClick={() => {
+                                    // Reset form to default state
+                                    setFormData({ comboName: '', mobileNames: [''] });
+                                    setErrors({});
+                                    onCancel();
+                                }}
                                 className="flex-1 sm:flex-none px-6 py-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-100 transition-all duration-200 flex items-center justify-center gap-2 font-medium border border-gray-200 hover:border-gray-300"
                             >
                                 <ArrowLeft size={18} />

@@ -1,13 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Search } from 'lucide-react';
 import ComboForm from '@/components/ComboForm';
 import ComboList from '@/components/ComboList';
+import SearchBar from '@/components/SearchBar';
+import SearchModal from '@/components/SearchModal';
 
 export default function Home() {
   const [combos, setCombos] = useState([]);
+  const [filteredCombos, setFilteredCombos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingCombo, setEditingCombo] = useState(null);
+  const [showSearchModal, setShowSearchModal] = useState(false);
 
   // Fetch data on component mount
   useEffect(() => {
@@ -20,6 +25,7 @@ export default function Home() {
       const result = await response.json();
       if (result.success) {
         setCombos(result.data);
+        setFilteredCombos(result.data);
       }
       setLoading(false);
     } catch (error) {
@@ -83,18 +89,53 @@ export default function Home() {
     }
   };
 
+  const handleSearchResults = (filtered) => {
+    setFilteredCombos(filtered);
+  };
+
+  const handleSelectFromModal = (combo) => {
+    setEditingCombo(combo);
+    setShowSearchModal(false);
+  };
+
+  // Keyboard shortcut for search modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setShowSearchModal(true);
+      }
+      if (e.key === 'Escape') {
+        setShowSearchModal(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-6">
-            <h1 className="text-3xl font-bold text-gray-900">
-              Patel Mobile Management System
-            </h1>
-            <p className="mt-2 text-gray-600">
-              Manage your mobile phone combos with multiple mobile names
-            </p>
+          <div className="py-6 flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Patel Mobile Management System
+              </h1>
+              <p className="mt-2 text-gray-600">
+                Manage your mobile phone combos with multiple mobile names
+              </p>
+            </div>
+            <button
+              onClick={() => setShowSearchModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors"
+            >
+              <Search className="w-4 h-4" />
+              Quick Search
+              <kbd className="px-1.5 py-0.5 bg-blue-200 text-blue-800 text-xs rounded">⌘K</kbd>
+            </button>
           </div>
         </div>
       </header>
@@ -108,14 +149,31 @@ export default function Home() {
             onCancel={() => setEditingCombo(null)}
             isEditing={!!editingCombo}
           />
-          <ComboList
+
+          {/* Search Bar */}
+          <SearchBar
             combos={combos}
+            onFilteredResults={handleSearchResults}
+            showAdvancedFilters={true}
+            placeholder="Search by combo name or mobile name..."
+          />
+
+          <ComboList
+            combos={filteredCombos}
             onEdit={handleComboEdit}
             onDelete={handleComboDelete}
             loading={loading}
           />
         </div>
       </div>
+
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={showSearchModal}
+        onClose={() => setShowSearchModal(false)}
+        combos={combos}
+        onSelectCombo={handleSelectFromModal}
+      />
     </div>
   );
 }
