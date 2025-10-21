@@ -96,7 +96,7 @@ const SearchBar = ({
                     {showAdvancedFilters && (
                         <button
                             onClick={() => setShowFilters(!showFilters)}
-                            className={`p-3 rounded-lg border transition-all duration-200 ${showFilters
+                            className={`cursor-pointer p-3 rounded-lg border transition-all duration-200 ${showFilters
                                 ? 'bg-blue-50 border-blue-300 text-blue-600'
                                 : 'border-gray-300 text-gray-600 hover:bg-gray-50'
                                 }`}
