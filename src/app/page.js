@@ -6,6 +6,8 @@ import ComboForm from '@/components/ComboForm';
 import ComboList from '@/components/ComboList';
 import SearchBar from '@/components/SearchBar';
 import SearchModal from '@/components/SearchModal';
+import ComboFilter from '@/components/ComboFilter';
+import MobileComboMapper from '@/components/MobileComboMapper';
 
 export default function Home() {
   const [combos, setCombos] = useState([]);
@@ -13,6 +15,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [editingCombo, setEditingCombo] = useState(null);
   const [showSearchModal, setShowSearchModal] = useState(false);
+  const [selectedCombo, setSelectedCombo] = useState(null);
+  const [filteredMobiles, setFilteredMobiles] = useState([]);
 
   // Fetch data on component mount
   useEffect(() => {
@@ -93,6 +97,14 @@ export default function Home() {
     setFilteredCombos(filtered);
   };
 
+  const handleComboFilterResults = (mobileNames) => {
+    setFilteredMobiles(mobileNames);
+  };
+
+  const handleComboSelect = (comboName) => {
+    setSelectedCombo(comboName);
+  };
+
   const handleSelectFromModal = (combo) => {
     setEditingCombo(combo);
     setShowSearchModal(false);
@@ -150,6 +162,17 @@ export default function Home() {
             isEditing={!!editingCombo}
           />
 
+          {/* Combo Filter */}
+          <ComboFilter
+            combos={combos}
+            onFilterResults={handleComboFilterResults}
+            selectedCombo={selectedCombo}
+            onComboSelect={handleComboSelect}
+          />
+
+          {/* Mobile-Combo Mapper */}
+          <MobileComboMapper combos={combos} />
+
           {/* Search Bar */}
           <SearchBar
             combos={combos}
@@ -163,6 +186,8 @@ export default function Home() {
             onEdit={handleComboEdit}
             onDelete={handleComboDelete}
             loading={loading}
+            selectedCombo={selectedCombo}
+            filteredMobiles={filteredMobiles}
           />
         </div>
       </div>
